@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Create Menu</h1>
+  <hr>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <div class="row">
+      <label for="publishedDateInput">Date:</label>
+      <input type="text" name="publishedDateInput" id="publishedDateInput">
+    </div>
+
+    <div class="row">
+      <label for="optionInput1">Option 1:</label>
+      <input type="text" name="optionInput1" id="optionInput1">
+    </div>
+
+    <div class="row">
+      <label for="optionInput2">Option 2:</label>
+      <input type="text" name="optionInput2" id="optionInput2">
+    </div>
+
+    <div class="row">
+      <label for="optionInput3">Option 3:</label>
+      <input type="text" name="optionInput3" id="optionInput3">
+    </div>
+
+    <div class="row">
+      <label for="optionInput4">Option 4:</label>
+      <input type="text" name="optionInput4" id="optionInput4">
+    </div>
+
+    <button type="submit" class="btn">Guardar</button>
+  </form>
+</div>

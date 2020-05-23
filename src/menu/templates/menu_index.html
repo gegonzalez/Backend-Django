@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Menu List</h1>
+    <hr>
+
+    <div class="row">
+
+      {% for menu in menu_list %}
+      <div class="col s12 md6 xl3">
+          <a href="{% url 'menu:details' menu.id %}" class="btn">{{ menu.published_date }}</a>
+      </div>
+
+      {% empty %}
+      <div class="noproject-wrapper center">
+        <h3 class="grey-text">There are no menus, yet.</h3>
+        <a href="{% url 'menu:add' %}" class="btn-large grey">
+          <span class="bold">Add Menu</span>
+        </a>
+      </div>
+      {% endfor %}
+
+    </div>
+    <br>
+    {% if menu_list %}
+    <div class="row">
+      <a href="{% url 'menu:add' %}" class="btn">
+        <span class="bold">Add Menu</span>
+      </a>
+    </div>
+    {% endif %}
+</div>
