@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* General */
+html {
+  font-family: 'Montserrat';
+  background-color: #FFFFFF;
+}
+h1, h6 {
+  font-weight: bold;
+}
+.bold {
+  font-weight: bold;
+}
+.row {
+  margin: 0!important;
+}
+.row .col {
+  padding-left: 0!important;
+}
+
+input[type="radio"] {
+  opacity: inherit!important;
+  pointer-events: visible!important;
+}
