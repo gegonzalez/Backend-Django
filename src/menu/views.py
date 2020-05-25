@@ -140,3 +140,13 @@ def is_in_todays_time_limit():
                                                 microsecond=0)
 
     return current_datetime < today_time_limit
+
+@login_required(login_url="/accounts/login")
+def order_index(request):
+    """
+    Lists the Orders of the current day
+    """
+    today = datetime.date.today()
+    order_list = Order.objects.filter(option__menu__published_date=today).order_by('id')
+
+    return render(request, 'order_index.html', {'order_list': order_list})

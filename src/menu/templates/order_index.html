@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Order List</h1>
+    <hr>
+
+    <div class="row">
+
+      {% for order in order_list %}
+      <div class="col s12 md6 xl3">
+          <a href="{% url 'menu:order_details' order.uuid %}" class="btn">{{ order.name }}</a>
+      </div>
+
+      {% empty %}
+      <div class="noproject-wrapper center">
+        <h3 class="grey-text">There are no orders, yet.</h3>
+      </div>
+      {% endfor %}
+
+    </div>
+    <div class="row">
+      <div class="col s12 md6 xl3">
+        <a href="{% url 'menu:index' %}" class="btn">
+          <span class="bold">View Menus</span>
+        </a>
+      </div>
+    </div>
+</div>
+{% endblock %}

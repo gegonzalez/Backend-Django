@@ -24,9 +24,16 @@
     <br>
     {% if menu_list %}
     <div class="row">
-      <a href="{% url 'menu:add' %}" class="btn">
-        <span class="bold">Add Menu</span>
-      </a>
+      <div class="col s12 md6 xl3">
+        <a href="{% url 'menu:add' %}" class="btn">
+          <span class="bold">Add Menu</span>
+        </a>
+      </div>
+      <div class="col s12 md6 xl3">
+        <a href="{% url 'menu:order_index' %}" class="btn">
+          <span class="bold">View Orders</span>
+        </a>
+      </div>
     </div>
     {% endif %}
 </div>
