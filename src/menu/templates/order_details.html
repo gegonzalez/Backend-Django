@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <h1>View Order</h1>
+    <hr>
+
+    <div class="row">
+      <div class="col s12 md6 xl3">
+        Date:
+      </div>
+      <div class="col s12 md6 xl3">
+        {{ order.option.menu.published_date }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 md6 xl3">
+        Selection:
+      </div>
+      <div class="col s12 md6 xl3">
+        {{ order.option.description }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 md6 xl3">
+        Name:
+      </div>
+      <div class="col s12 md6 xl3">
+        {{ order.name }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 md6 xl3">
+        Customization:
+      </div>
+      <div class="col s12 md6 xl3">
+        {{ order.customization }}
+      </div>
+    </div>
+
+
+
+  </div>
+{% endblock %}

@@ -1,17 +1,17 @@
 from uuid import uuid1
-from datetime import datetime
+import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Menu, Option
-from .forms import MenuForm, OptionForm
+from .models import Menu, Option, Order
+from .forms import MenuForm, OptionForm, OrderForm
 
 @login_required(login_url="/accounts/login")
 def menu_index(request):
     """
     Returns a list of Menus with date greater or iqual than today
     """
-    today = datetime.today()
+    today = datetime.date.today()
     menu_list = Menu.objects.filter(published_date__gte=today).order_by('published_date')
 
     return render(request, 'menu_index.html', {'menu_list': menu_list})
@@ -83,3 +83,37 @@ def menu_details_uuid(request, uuid):
     context = {'menu': menu, 'options': options}
 
     return render(request, 'menu_details.html', context)
+
+def order_index(request, uuid):
+    """
+    Search a Menu and its Options by an uiid
+    """
+    menu = get_object_or_404(Menu, uuid=uuid)
+
+    return render(request, 'order.html', {'menu': menu})
+
+def order_add(request, uuid):
+    """
+    [summary]
+    """
+    option = get_object_or_404(Option, uuid=uuid)
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+
+        if form.is_valid():
+            order = Order.objects.create(option=option, uuid=uuid1(), **form.cleaned_data)
+            order.save()
+            return redirect('menu:order_details', order.uuid)
+    else:
+        form = OrderForm()
+
+    return render(request, 'order_add.html', {'form': form, 'option': option})
+
+def order_details(request, uuid):
+    """
+    Search a Menu and its Options by an uiid
+    """
+    order = get_object_or_404(Order, uuid=uuid)
+
+    return render(request, 'order_details.html', {'order': order})
