@@ -1,11 +1,20 @@
 from django import forms
-from .models import Menu, Option
 
-class MenuForm(forms.ModelForm):
+class MenuForm(forms.Form):
     """
     Defines Menu fields
     """
+    publishedDateInput = forms.CharField(max_length=250)
 
-    class Meta:
-        model = Menu
-        fields = ['published_date']
+class OptionForm(forms.Form):
+    """
+    Defines Option fields
+    """
+    description = forms.CharField(max_length=250)
+
+class OrderForm(forms.Form):
+    """
+    Defines Order fields
+    """
+    name          = forms.CharField(max_length=250)
+    customization = forms.CharField(max_length=250)
