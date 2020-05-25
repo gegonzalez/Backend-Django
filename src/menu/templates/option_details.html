@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <h1>View Option Details</h1>
+    <hr>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="fieldWrapper">
+          {{ field.label_tag }} {{ field.value }}
+        </div>
+      {% endfor %}
+
+      {{ field.value }}
+
+      <button type="submit" class="btn">Guardar</button>
+
+    </form>
+
+  </div>
+{% endblock %}
