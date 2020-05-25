@@ -2,3 +2,4 @@ django
 pytest
 requests
 django-crontab
+pytest-cov

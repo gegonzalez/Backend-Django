@@ -25,7 +25,8 @@ There are two applications in this project:
 - `python3 manage.py migrate`: Execute migrations
 - `python3 manage.py makemigrations appName`: Create migrations for an App
 - `python3 manage.py runserver 8080`: Run local server
-- `python3 manage.py test appName`: Run test for an App
+- `python3 manage.py test appName -v 2`: Run test for an App
+- `pytest`: Show the test coverage report
 
 ## User Especifications
 
