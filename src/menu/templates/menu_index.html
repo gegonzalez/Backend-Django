@@ -8,7 +8,7 @@
 
       {% for menu in menu_list %}
       <div class="col s12 md6 xl3">
-          <a href="{% url 'menu:details' menu.id %}" class="btn">{{ menu.published_date }}</a>
+          <a href="{% url 'menu:details_uuid' menu.uuid %}" class="btn">{{ menu.published_date }}</a>
       </div>
 
       {% empty %}

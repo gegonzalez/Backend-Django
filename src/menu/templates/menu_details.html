@@ -7,11 +7,22 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
     {% if menu %}
+      <div class="row">
+        <div class="col s12 md6 xl3">
+          Date:
+        </div>
+        <div class="col s12 md6 xl3">
+          {{ menu.published_date }}
+        </div>
+      </div>
+
       {% for option in options %}
       <div class="row">
-          <div class="col s12 md6 xl3">
-            {{ option.description }}
-          </div>
+        <div class="col s12 md6 xl3">
+          <a href="{% url 'menu:option_edit' option.uuid %}">
+            {{ forloop.counter }}: {{ option.description }}
+          </a>
+        </div>
       </div>
       {% endfor %}
 
@@ -20,5 +31,13 @@
         <h3 class="grey-text">There are no results.</h3>
       </div>
     {% endif %}
+
+    <a href="{% url 'menu:index' %}" class="btn">
+      <span class="bold">View List</span>
+    </a>
+
+    <a href="{% url 'menu:option_add' menu.uuid %}" class="btn">
+      <span class="bold">Add Option</span>
+    </a>
 </div>
 {% endblock %}
