@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'menu.apps.MenuConfig',
     'accounts.apps.AccountsConfig',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
@@ -123,4 +124,15 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "cornershop/static"),
+]
+
+
+SYNC_CRONTAB = '0 9 * * *'
+
+SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+
+SYSTEM_HOST = 'http://127.0.0.1:8000/'
+
+CRONJOBS = [
+    (SYNC_CRONTAB, 'menu.cron.menu_send_job', [SLACK_WEBHOOK_URL, SYSTEM_HOST])
 ]
