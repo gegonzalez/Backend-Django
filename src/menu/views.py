@@ -66,12 +66,12 @@ def option_edit(request, uuid):
         if form.is_valid():
             option.description = form.cleaned_data['description']
             option.save()
-
             return redirect('menu:details_uuid', option.menu.uuid)
     else:
         form = OptionForm(data={'description':option.description})
 
-    return render(request, 'option_details.html', {'form': form})
+    context = {'form': form, 'option': option}
+    return render(request, 'option_details.html', context)
 
 def menu_details_uuid(request, uuid):
     """

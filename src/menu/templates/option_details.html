@@ -7,17 +7,13 @@
     <form method="POST">
       {% csrf_token %}
 
-      {% for field in form %}
-        <div class="fieldWrapper">
-          {{ field.label_tag }} {{ field.value }}
-        </div>
-      {% endfor %}
+      {{ form }}
 
-      {{ field.value }}
+      <button type="submit" class="btn">Save</button>
 
-      <button type="submit" class="btn">Guardar</button>
-
+      <a href="{% url 'menu:details_uuid' option.menu.uuid %}" class="btn">
+        <span class="bold">Cancel {{ option.menu.uiid }}</span>
+      </a>
     </form>
-
   </div>
 {% endblock %}
