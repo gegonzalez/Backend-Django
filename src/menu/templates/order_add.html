@@ -4,23 +4,28 @@
     <h1>Create Order</h1>
     <hr>
 
-    <div class="row">
-      <div class="col s12 md6 xl3">
-        Selection:
+    {% if error_message %}
+      <div class="noproject-wrapper center">
+        <h3 class="grey-text">{{ error_message }}</h3>
       </div>
-      <div class="col s12 md6 xl3">
-        {{ option.description }}
+    {% else %}
+      <div class="row">
+        <div class="col s12 md6 xl3">
+          Selection:
+        </div>
+        <div class="col s12 md6 xl3">
+          {{ option.description }}
+        </div>
       </div>
-    </div>
 
-    <form method="POST">
-      {% csrf_token %}
+      <form method="POST">
+        {% csrf_token %}
 
-      {{ form }}
+        {{ form }}
 
-      <button type="submit" class="btn">Guardar</button>
+        <button type="submit" class="btn">Guardar</button>
 
-    </form>
-
+      </form>
+    {% endif %}
   </div>
 {% endblock %}

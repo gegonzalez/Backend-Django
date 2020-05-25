@@ -84,31 +84,38 @@ def menu_details_uuid(request, uuid):
 
     return render(request, 'menu_details.html', context)
 
-def order_index(request, uuid):
+def menu_order(request, uuid):
     """
     Search a Menu and its Options by an uiid
+    Validates the time limit to display the Menu
     """
-    menu = get_object_or_404(Menu, uuid=uuid)
+    if is_in_todays_time_limit():
+        menu = get_object_or_404(Menu, uuid=uuid)
+        context = {'menu': menu}
+    else:
+        context = {'error_message': 'It is not possible to recieve your Order after 11 AM'}
 
-    return render(request, 'order.html', {'menu': menu})
+    return render(request, 'order.html', context)
 
 def order_add(request, uuid):
     """
-    [summary]
+    Creates an Order. Validates the time limit to create the order
     """
+    error_message = None
     option = get_object_or_404(Option, uuid=uuid)
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
 
-        if form.is_valid():
+        if is_in_todays_time_limit() and form.is_valid():
             order = Order.objects.create(option=option, uuid=uuid1(), **form.cleaned_data)
             order.save()
             return redirect('menu:order_details', order.uuid)
+        error_message = 'It is not possible to recieve your Order after 11 AM'
     else:
         form = OrderForm()
 
-    return render(request, 'order_add.html', {'form': form, 'option': option})
+    return render(request, 'order_add.html', {'form': form, 'option': option, 'error_message': error_message})
 
 def order_details(request, uuid):
     """
@@ -117,3 +124,19 @@ def order_details(request, uuid):
     order = get_object_or_404(Order, uuid=uuid)
 
     return render(request, 'order_details.html', {'order': order})
+
+def is_in_todays_time_limit():
+    """
+    Compares current time against the today time limit
+    """
+    limit_time_string = "11:00:00"
+
+    limit_time_datetime = datetime.datetime.strptime(limit_time_string, "%H:%M:%S")
+
+    current_datetime = datetime.datetime.today()
+    today_time_limit = current_datetime.replace(hour=limit_time_datetime.time().hour,
+                                                minute=limit_time_datetime.time().minute,
+                                                second=limit_time_datetime.time().second,
+                                                microsecond=0)
+
+    return current_datetime < today_time_limit
