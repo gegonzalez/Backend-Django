@@ -16,9 +16,10 @@ There are two applications in this project:
 - **Menu**: defines the features related to the Menus
 - **Accounts**: handles administration for Users
 
-## Installation
+## How to install and run
 
 1. Set the enviroment variable `SLACK_WEBHOOK_URL_CRONTAB` with the webhook of the Slack channel
+2. Execute the command `make run`
 
 ## App Commands
 
