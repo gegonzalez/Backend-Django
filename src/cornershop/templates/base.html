@@ -13,18 +13,18 @@
 </head>
 <body>
   <header>
-    {% if user.is_authenticated %}
     <nav>
       <ul>
         <li>
+          {% if user.is_authenticated %}
           <form class="logout" action="{% url 'accounts:logout' %}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
           </form>
+          {% endif %}
         </li>
       </ul>
     </nav>
-    {% endif %}
   </header>
   {% block content %}
 
