@@ -20,6 +20,8 @@ There are two applications in this project:
 
 1. Set the enviroment variable `SLACK_WEBHOOK_URL_CRONTAB` with the webhook of the Slack channel
 2. Execute the command `make run`
+3. Open the link <http://127.0.0.1:8000/>
+4. Super User can be created with `make createsuperuser`
 
 ## App Commands
 
@@ -31,7 +33,7 @@ There are two applications in this project:
 
 ## User Especifications
 
-- The Application is configured for a user with the name Nora, and assumes that the rest of the user are Employees.
+- The Application is configured for a logged user to be Nora, and assumes that the rest of the non logged users are Employees. So, they can use the reminder link to make their orders.
 
 ## Cronjob Especification
 
@@ -46,4 +48,4 @@ After making the configurations, It can be tested by executing `python3 manage.p
 
 - `python3 manage.py crontab add`: Adds a job to crontab (of the user which you are running this command with)
 - `python3 manage.py crontab show`: show current active jobs of this project
-- `python3 manage.py crontab remove`: Remove all defined
+- `python3 manage.py crontab remove`: Remove all active jobs

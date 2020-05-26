@@ -21,3 +21,6 @@ createsuperuser: migrate
 
 db.sqlite3:
 	touch db.sqlite3
+
+coverage: test
+	pytest
