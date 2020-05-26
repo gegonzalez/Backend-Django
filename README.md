@@ -41,6 +41,7 @@ There is a job configured to send the reminder every day at 9 am CLT. In order t
 
 1. Set the enviroment variable `SLACK_WEBHOOK_URL_CRONTAB` with the webhook of the target channel
 2. Add the cronjob by executing the next command `python3 manage.py crontab add`
+3. Optional: it is possible to change the variable `SYSTEM_HOST` to change the host of the Application
 
 After making the configurations, It can be tested by executing `python3 manage.py crontab run [jobhash]`
 

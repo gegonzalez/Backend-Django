@@ -129,9 +129,9 @@ STATICFILES_DIRS = [
 
 SYNC_CRONTAB = '0 9 * * *'
 
-SLACK_WEBHOOK_URL = os.environ['SLACK_WEBHOOK_URL']
+SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')
 
-SYSTEM_HOST = 'http://127.0.0.1:8000/'
+SYSTEM_HOST = os.getenv('SYSTEM_HOST', 'http://127.0.0.1:8000/')
 
 CRONJOBS = [
     (SYNC_CRONTAB, 'menu.cron.menu_send_job', [SLACK_WEBHOOK_URL, SYSTEM_HOST])
