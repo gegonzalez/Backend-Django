@@ -1,6 +1,4 @@
-from uuid import uuid1
 from django.db import models
-
 
 class Menu(models.Model):
     """

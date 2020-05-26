@@ -115,7 +115,9 @@ def order_add(request, uuid):
     else:
         form = OrderForm()
 
-    return render(request, 'order_add.html', {'form': form, 'option': option, 'error_message': error_message})
+    return render(request,
+                  'order_add.html',
+                  {'form': form, 'option': option, 'error_message': error_message})
 
 def order_details(request, uuid):
     """
