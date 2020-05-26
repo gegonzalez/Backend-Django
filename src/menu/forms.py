@@ -4,7 +4,7 @@ class MenuForm(forms.Form):
     """
     Defines Menu fields
     """
-    publishedDateInput = forms.CharField(max_length=250)
+    publishedDateInput = forms.CharField(max_length=250, label='Date')
 
 class OptionForm(forms.Form):
     """
